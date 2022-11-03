@@ -22,7 +22,25 @@ def register(request):
     
          obj.save()
          return HttpResponse("submission successfully registered")
-    else: 
-        #  return HttpResponse("submission Not submitted") 
+    else:
+     return render(request,'register.html')
  
-        return render(request,'register.html',)
+    
+    
+    
+def login(request):
+    if request.method == "POST":
+        phone =request.POST['phone']
+        age =request.POST['age']
+        
+        obj=Coustmer.objects.filter(phone=phone,age=age)
+        
+        if obj.exists() :
+            return HttpResponse("Dashboard in")
+        else:
+           return HttpResponse("login again") 
+       
+    return render(request,'login.html')        
+        
+        
+           
