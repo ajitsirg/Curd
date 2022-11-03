@@ -36,11 +36,19 @@ def login(request):
         obj=Coustmer.objects.filter(phone=phone,age=age)
         
         if obj.exists() :
-            return HttpResponse("Dashboard in")
+            return render(request,'dashboard.html')
         else:
            return HttpResponse("login again") 
        
     return render(request,'login.html')        
+
+
+def dashbord(request):
+    data = Coustmer.objects.all().first
+    context = {"data": data}
+    return render(request,'dashboard.html',context)        
         
-        
-           
+
+
+
+          
